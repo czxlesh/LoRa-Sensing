@@ -1,6 +1,6 @@
 系统结构如下图所示
 
-![system_plot]https://github.com/czxlesh/LoRa-Sensing/blob/master/Human%20tracking%20system/system_plot.PNG
+![system_plot](https://github.com/czxlesh/LoRa-Sensing/blob/master/Human%20tracking%20system/system_plot.PNG)
 
 代码分三部分：GnuRadio、Matlab和Web
 
