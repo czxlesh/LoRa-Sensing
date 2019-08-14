@@ -1,5 +1,5 @@
 path = 'F:\ubuntuShared\';
-fileName1 = 'ant1-walk-2.dat';
+fileName1 = 'ant1-walk-1.dat';
 fileName2 = replace(fileName1, 'ant1', 'ant2');
 
 roomNum = 4;
