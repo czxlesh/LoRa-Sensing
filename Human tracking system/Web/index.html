@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="css/circle.css" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+    body {
+        /*padding-top: 20px;*/
+        background-color: #E4E5E6;
+    }
+
+    .row {
+    	/*height: 46.5vh;*/
+    }
+
+    .card {
+        /*padding: 1vh 2vh;
+        height: 46.5vh;*/
+   
+    }
+
+    .chart {
+        width: 100%;
+        height: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    #myvideo {
+        width: 100%;
+        height: 100%;
+    }
+
+    .div-float{ float: left} 
+
+	.circle-big {
+  		position: absolute;
+  		border-radius: 50%;
+  		width: 15vh;
+  		height: 15vh;
+  		background: radial-gradient(circle at 35% 35%, #ffffff, #0000ff);
+  		box-shadow: 0 0 1vh rgba(0, 255, 255, 0.5);
+  		/*-webkit-transform: scale(1);*/
+  		-webkit-animation: myrotate 5s infinite linear;
+	}
+
+	.circle-big-green {
+  		position: absolute;
+  		border-radius: 50%;
+  		width: 15vh;
+  		height: 15vh;
+  		background: radial-gradient(circle at 35% 35%, #ffffff, #00ff00);
+  		box-shadow: 0 0 1vh rgba(0, 255, 255, 0.5);
+  		/*-webkit-transform: scale(1);*/
+  		-webkit-animation: myrotate 5s infinite linear;
+	}
+
+	.circle-small {
+  		position: absolute;
+  		border-radius: 50%;
+  		width: 5vh;
+  		height: 5vh;
+  		background: radial-gradient(circle at 35% 35%, #ffffff, #0000ff);
+  		box-shadow: 0 0 1vh rgba(0, 255, 255, 0.5);
+  		/*-webkit-transform: scale(1);*/
+  		-webkit-animation: myrotate 5s infinite linear;
+	}
+
+	.circle-small-green {
+  		position: absolute;
+  		border-radius: 50%;
+  		width: 5vh;
+  		height: 5vh;
+  		background: radial-gradient(circle at 35% 35%, #ffffff, #00ff00);
+  		box-shadow: 0 0 1vh rgba(0, 255, 255, 0.5);
+  		/*-webkit-transform: scale(1);*/
+  		-webkit-animation: myrotate 5s infinite linear;
+	}
+
+	@keyframes myrotate {
+		0%  {transform: rotate(0deg);}
+		50%  {transform: rotate(180deg);}
+		100%  {transform: rotate(360deg);}
+	}
+
+	@-webkit-keyframes myrotate {
+		0%  {transform: rotate(0deg);}
+		50%  {transform: rotate(180deg);}
+		100%  {transform: rotate(360deg);}
+	}
+
+	.r1-r2 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r1tor2 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r1tor2 {
+		0% {left:4.3vw;opacity: 1;}
+		99% {left:18.4vw;opacity: 1;}
+		100%{left:18.5vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r1tor2 {
+		0% {left:4.3vw;opacity: 1;}
+		99% {left:18.4vw;opacity: 1;}
+		100%{left:18.5vw;opacity: 0;}
+	}
+
+	.r2-r1 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r2tor1 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r2tor1{
+		0% {left:18.5vw;opacity: 1;}
+		99% {left:4.4vw;opacity: 1;}
+		100%{left:4.3vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r2tor1 {
+		0% {left:18.5vw;opacity: 1;}
+		99% {left:4.4vw;opacity: 1;}
+		100%{left:4.3vw;opacity: 0;}
+	}
+
+	.r1-r3 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r1tor3 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r1tor3 {
+		0% {left:4.3vw;opacity: 1;}
+		99% {left:33.4vw;opacity: 1;}
+		100%{left:33.5vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r1tor3 {
+		0% {left:4.3vw;opacity: 1;}
+		99% {left:33.4vw;opacity: 1;}
+		100%{left:33.5vw;opacity: 0;}
+	}
+
+	.r3-r1 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r3tor1 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r3tor1 {
+		0% {left:33.5vw;opacity: 1;}
+		99% {left:4.4vw;opacity: 1;}
+		100%{left:4.3vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r3tor1 {
+		0% {left:33.5vw;opacity: 1;}
+		99% {left:4.4vw;opacity: 1;}
+		100%{left:4.3vw;opacity: 0;}
+	}
+
+	.r1-r4 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r1tor4 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r1tor4 {
+		0% {left:4.3vw;opacity: 1;}
+		99% {left:48vw;opacity: 1;}
+		100%{left:48.1vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r1tor4 {
+		0% {left:4.3vw;opacity: 1;}
+		99% {left:48vw;opacity: 1;}
+		100%{left:48.1vw;opacity: 0;}
+	}
+
+	.r4-r1 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r4tor1 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r4tor1 {
+		0% {left:48.1vw;opacity: 1;}
+		99% {left:4.4vw;opacity: 1;}
+		100%{left:4.3vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r4tor1 {
+		0% {left:48.1vw;opacity: 1;}
+		99% {left:4.4vw;opacity: 1;}
+		100%{left:4.3vw;opacity: 0;}
+	}
+
+	.r2-r3 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r2tor3 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r2tor3{
+		0% {left:18.5vw;opacity: 1;}
+		99% {left:33.4vw;opacity: 1;}
+		100%{left:33.5vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r2tor3 {
+		0% {left:18.5vw;opacity: 1;}
+		99% {left:33.4vw;opacity: 1;}
+		100%{left:33.5vw;opacity: 0;}
+	}
+
+	.r3-r2 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r3tor2 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r3tor2 {
+		0% {left:33.5vw;opacity: 1;}
+		99% {left:18.6vw;opacity: 1;}
+		100%{left:18.5vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r3tor2 {
+		0% {left:33.5vw;opacity: 1;}
+		99% {left:18.6vw;opacity: 1;}
+		100%{left:18.5vw;opacity: 0;}
+	}
+
+	.r2-r4 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r2tor4 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r2tor4{
+		0% {left:18.5vw;opacity: 1;}
+		99% {left:48vw;opacity: 1;}
+		100%{left:48.1vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r2tor4 {
+		0% {left:18.5vw;opacity: 1;}
+		99% {left:48vw;opacity: 1;}
+		100%{left:48.1vw;opacity: 0;}
+	}
+
+	.r4-r2 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r4tor2 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r4tor2 {
+		0% {left:48.1vw;opacity: 1;}
+		99% {left:18.6vw;opacity: 1;}
+		100%{left:18.5vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r4tor2 {
+		0% {left:48.1vw;opacity: 1;}
+		99% {left:18.6vw;opacity: 1;}
+		100%{left:18.5vw;opacity: 0;}
+	}
+
+	.r3-r4 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r3tor4 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r3tor4 {
+		0% {left:33.5vw;opacity: 1;}
+		99% {left:48vw;opacity: 1;}
+		100%{left:48.1vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r3tor4 {
+		0% {left:33.5vw;opacity: 1;}
+		99% {left:48vw;opacity: 1;}
+		100%{left:48.1vw;opacity: 0;}
+	}
+
+	.r4-r3 {
+		position: absolute;
+		top:40vh;
+		opacity: 0;
+		-webkit-animation: r4tor3 4s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes r4tor3 {
+		0% {left:48.1vw;opacity: 1;}
+		99% {left:33.6vw;opacity: 1;}
+		100%{left:33.5vw;opacity: 0;}
+	}
+
+	@-webkit-keyframes r4tor3 {
+		0% {left:48.1vw;opacity: 1;}
+		99% {left:33.6vw;opacity: 1;}
+		100%{left:33.5vw;opacity: 0;}
+	}
+    </style>
+</head>
+
+<body>
+    <!-- <div class="container"> -->
+    <div class="row" style="height: 59vh">
+		<div class="col" style="height: 59vh; width: 60vw">
+        	<div class="card hoverable" style="height:59vh">
+        		<div class="div-float"><h4 style="font-weight:bold; padding-top:4vh; padding-left:2vw">Room1</h4></div>
+        		<div class="div-float"><h4 style="font-weight:bold; padding-top:4vh; padding-left:5vw">Room2</h4></div>
+        		<div class="div-float"><h4 style="font-weight:bold; padding-top:4vh; padding-left:5vw">Room3</h4></div>
+        		<div class="div-float"><h4 style="font-weight:bold; padding-top:4vh; padding-left:4.5vw">Room4</h4></div>
+
+        		<div style="clear:both"></div>
+
+            	<div class="div-float" style="padding-top:2vh; padding-left:0vw">
+            		<figure id="r1" class="circle-big"></figure>
+            	</div>
+            	<div class="div-float" style="padding-top:7vh; padding-left:7vw">
+            		<figure id="r1-1" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float" style="padding-top:7vh; padding-left:2.5vw">
+            		<figure id="r1-2" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float" style="padding-top:7vh; padding-left:2.5vw">
+            		<figure id="r1-3" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float" style="padding-top:2vh; padding-left:2.5vw">
+            		<figure id="r2" class="circle-big"></figure>
+            	</div>
+            	<div class="div-float" style="padding-top:7vh; padding-left:7vw">
+            		<figure id="r2-1" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float" style="padding-top:7vh; padding-left:2.5vw">
+            		<figure id="r2-2" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float" style="padding-top:7vh; padding-left:2.5vw">
+            		<figure id="r2-3" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float"style="padding-top:2vh;padding-left:2.5vw">
+            		<figure id="r3" class="circle-big"></figure>
+            	</div>
+            	<div class="div-float"style="padding-top:7vh;padding-left:7vw">
+            		<figure id="r3-1" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float"style="padding-top:7vh;padding-left:2.5vw">
+            		<figure id="r3-2" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float"style="padding-top:7vh;padding-left:2.5vw">
+            		<figure id="r3-3" class="circle-small"></figure>
+            	</div>
+            	<div class="div-float"style="padding-top:2vh;padding-left:2.5vw">
+            		<figure id="r4" class="circle-big"></figure>
+            	</div>
+
+            	<div style="clear:both"></div>
+
+            	<div class="r4-r1" id="person">
+            		<img src="./icon/walkright.png" width="50vh" id="personIcon">
+            	</div>
+
+            </div>
+        </div>	
+        <div class="col" style="text-align: center; width: 38.5vw"> 
+        	<div class="card hoverable" style="height: 59vh; width: 38.5vw">
+            	<video id="myvideo" autoplay align="middle"></video>
+        	</div>
+        </div>
+    </div>
+
+    <div class="row" style="height:34vh; margin-top:0vh">
+    	<div class="col s4">
+        	<div class="card hoverable" style="height:34vh; margin-top:0vh">
+        		<span><h4 style="text-align: center; font-weight: bold; margin-top:0vh">Status</h4></span>
+				<h1 style="width: 100%; text-align: center; padding-top: 2vh; font-size: 12vh; color: black;" id="status">Static</h1>
+			</div>
+        </div>   
+        <div class="col s8" style="height: 34vh">
+        	<div class="card hoverable" style="height: 34vh; margin-top:0vh">
+            	<div class="chart" id="chart1"></div>
+            </div>
+        </div>	
+        
+    </div>
+    <!-- </div> -->
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    
+    <script type="text/javascript">
+    let tmp=[];
+	for(let i = 0;i < 20;i++){
+    	tmp.push(i+1);
+	}
+    let amp_opt = {
+        title: {
+            text: '        Time Domain',
+            left: 'center',
+            textStyle: {
+                fontSize: 22,
+            }
+        },
+        grid: {
+        	x:70,
+        	y:35,
+        	x2:20
+        },
+        xAxis: {
+            data: tmp,
+            axisLabel: {
+                textStyle: {
+                    fontSize: 16,
+                }
+            },
+            name: 'Time / Second',
+            nameTextStyle: {
+                fontSize: 18,
+                fontWeight: 'bold',
+            },
+            nameLocation: 'middle',
+            nameGap: 34,
+            splitLine: {
+                show: true,
+            },
+        },
+        yAxis: {
+            type: 'value',
+            name: 'Amplitude / db',
+            axisLabel: {
+                textStyle: {
+                    fontSize: 16,
+                }
+            },
+            nameTextStyle: {
+                fontSize: 18,
+                fontWeight: 'bold',
+            },
+            nameLocation: 'middle',
+            nameGap: 45,
+        },
+        series: [{
+            name: '模拟数据',
+            type: 'line',
+            data: tmp,
+            symbol: 'none',
+            smooth: true,
+        }],
+        visualMap:{
+        	show: false,
+        	dimension: 0,
+        	pieces:[{gte: 10, lte: 15, color: 'red'}],
+        	outOfRange: {
+        		color: 'blue'
+        	}
+        }
+    };
+
+    let amp_chart = echarts.init(document.getElementById('chart1'));
+
+    amp_chart.setOption(amp_opt);
+ 
+
+    // 异步加载数据
+
+    setInterval(function() {
+        let url = 'querydata.php';
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'text',
+            success: function(data) {
+                //console.log('success');
+                //console.log(data);
+                let obj = JSON.parse(data);
+
+                if((obj.actindex)!==[0,0]){  //a new action
+                    line_pieces=[{gte: (obj.actid)[0], lte: (obj.actid)[1], color: 'red'}];
+                        //color_id = (color_id + 1) % color_string.length;
+                }
+                else {
+                    line_pieces=[{gte: 0, lte: 0, color: 'red'}];
+                }
+
+                amp_chart.setOption({
+                    title: {
+                        text: 'Time Domain',
+                        left: 'center',
+                        textStyle: {
+                           fontSize: 22,
+                        }
+                    },
+                    xAxis: {
+                        data: obj.time,
+                    },
+                    series: {
+                        type: 'line',
+                        smooth: true,
+                        data: obj.amp,
+                        itemStyle : {  
+                            normal : {  
+                                lineStyle:{  
+                                    width:1  
+                                } 
+                            }
+                        }
+                    },
+                    yAxis: {
+                        min: Math.min.apply(Math, obj.amp) - 0.0002,
+                        max: Math.max.apply(Math, obj.amp) + 0.0002,
+                        //splitNumber:5,
+                        axisLabel: {                   
+                 			formatter: function (value, index) {           
+                  			return value.toFixed(2);      
+                   			}                
+            			}
+                    },
+                    
+                    visualMap:{
+                    	pieces: line_pieces
+                    }
+                 });
+
+
+                let status = obj.status;
+                switch(status[0]){
+                	case 0:    //static
+                		document.getElementById("status").innerHTML="Static";
+                		document.getElementById("status").style.color="black";
+                		break;
+                	case 1:    //walking
+                		document.getElementById("status").innerHTML="Walking";
+                		document.getElementById("status").style.color="red";
+                		break;
+                	case 2:    //just finish walking
+                		//status display
+                		document.getElementById("status").innerHTML="R"+status[1]+"->R"+status[2];
+                		document.getElementById("status").style.color="lime";
+                		//person icon display
+                		if(status[1]<status[2])    
+                			document.getElementById("personIcon").src="./icon/walkright.png";
+                		else
+                			document.getElementById("personIcon").src="./icon/walkleft.png";              			
+                		document.getElementById("person").className="r"+status[1]+"-r"+status[2];
+                		//room icon display
+                		let ra = Math.min(status[1], status[2]);
+                		let rb = Math.max(status[1], status[2]);
+                		for(let i=ra; i<rb; i++){
+                			document.getElementById("r"+i).className="circle-big-green";
+                			document.getElementById("r"+i+"-1").className="circle-small-green";
+                			document.getElementById("r"+i+"-2").className="circle-small-green";
+                			document.getElementById("r"+i+"-3").className="circle-small-green";
+                		}
+                		document.getElementById("r"+rb).className="circle-big-green";
+                		setTimeout(function(){
+                			for(let i=ra; i<rb; i++){
+                				document.getElementById("r"+i).className="circle-big";
+                				document.getElementById("r"+i+"-1").className="circle-small";
+                				document.getElementById("r"+i+"-2").className="circle-small";
+                				document.getElementById("r"+i+"-3").className="circle-small";
+                			}
+                			document.getElementById("r"+rb).className="circle-big";
+                			document.getElementById("status").innerHTML="Static";
+                			document.getElementById("status").style.color="black";
+                		}, 4000)
+                		break;
+                }         
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(textStatus);
+            }
+        });
+
+    }, 500);
+    // alert("fuck!");
+    </script>
+    <!-- <script type="text/javascript" src="js/mydraw.js"></script> -->
+    <script type="text/javascript" src="js/myvideo.js"></script>
+    <script type="text/javascript" src="js/motor.js"></script>
+</body>
+
+</html>
