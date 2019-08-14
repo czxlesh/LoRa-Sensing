@@ -3,15 +3,15 @@ fileName1 = 'ant1-walk-2.dat';
 fileName2 = replace(fileName1, 'ant1', 'ant2');
 
 roomNum = 4;
-roomDis = [0, 8.0, 11.2, 8];    %ÏàÁÚÁ½·¿¼äÖ®¼ä¾àÀë
+roomDis = [0, 8.0, 11.2, 8];    %ç›¸é‚»ä¸¤æˆ¿é—´ä¹‹é—´è·ç¦»
 disGraph = makeDisGraph(roomNum, roomDis);
 
-totTime = 100;    %minutes£¬ÏµÍ³×ÜÔËĞĞÊ±¼ä
-winSize = 30;    %seconds£¬Ê±¼ä´°¿Ú´óĞ¡
-sampleRate = 10000;    %Ô­Ê¼²ÉÑùÂÊ
-ratio = 250;    %½µ²ÉÑù±¶Êı
-filterLow = 0.15;    %´øÍ¨ÂË²¨ÏÂÏŞ
-filterHigh = 0.7;    %´øÍ¨ÂË²¨ÉÏÏŞ
+totTime = 100;    %minutesï¼Œç³»ç»Ÿæ€»è¿è¡Œæ—¶é—´
+winSize = 30;    %secondsï¼Œæ—¶é—´çª—å£å¤§å°
+sampleRate = 10000;    %åŸå§‹é‡‡æ ·ç‡
+ratio = 250;    %é™é‡‡æ ·å€æ•°
+filterLow = 0.15;    %å¸¦é€šæ»¤æ³¢ä¸‹é™
+filterHigh = 0.7;    %å¸¦é€šæ»¤æ³¢ä¸Šé™
 waveLength = 0.3279;
 lastAct = -1;
 
@@ -25,8 +25,8 @@ for t = 1: totTime * 60
     
     file1 = fopen([path, fileName1]);
     file2 = fopen([path, fileName2]);
-    rawSignal1 = fread(file1, 'float32');    %ÌìÏß1Ô­Ê¼iqĞÅºÅ
-    rawSignal2 = fread(file2, 'float32');    %ÌìÏß2Ô­Ê¼iqĞÅºÅ
+    rawSignal1 = fread(file1, 'float32');    %å¤©çº¿1åŸå§‹iqä¿¡å·
+    rawSignal2 = fread(file2, 'float32');    %å¤©çº¿2åŸå§‹iqä¿¡å·
     fclose(file1);
     fclose(file2);
     
@@ -37,10 +37,10 @@ for t = 1: totTime * 60
     
     time = t:ratio/sampleRate:t+winSize-ratio/sampleRate;
 
-    signal1 = rawSignal1(nowid: nowid+winSize*sampleRate*2-1);    %½ØÈ¡Ä©Î²Æ¬¶Î
-    signal2 = rawSignal2(nowid: nowid+winSize*sampleRate*2-1);    %½ØÈ¡Ä©Î²Æ¬¶Î
+    signal1 = rawSignal1(nowid: nowid+winSize*sampleRate*2-1);    %æˆªå–æœ«å°¾ç‰‡æ®µ
+    signal2 = rawSignal2(nowid: nowid+winSize*sampleRate*2-1);    %æˆªå–æœ«å°¾ç‰‡æ®µ
     
-% %     ¶ÁÀëÏßÊ±ÓÃ
+% %     è¯»ç¦»çº¿æ—¶ç”¨
 % %     signal1 = originalSignal1(end - winSize*sampleRate*2 + 1: end);
 % %     signal2 = originalSignal2(end - winSize*sampleRate*2 + 1: end);
     i1 = signal1(1:2:end);
@@ -76,14 +76,14 @@ for t = 1: totTime * 60
     %status = [1,0,0] -> walking
     %status = [2,ra,rb] -> just finish walking from ra to rb
     
-    ws=1;    %1s£¬¼ÆËã·½²îµÄ»¬¶¯´°¿Ú´óĞ¡
+    ws=1;    %1sï¼Œè®¡ç®—æ–¹å·®çš„æ»‘åŠ¨çª—å£å¤§å°
     [t, variance] = m_getVar(time, downsampleAmp1, ws*sampleRate/ratio);
     
     threshold = 0.3e-6;
     
     [actState, actTime, stateTrans] = m_getActState(t, variance, threshold, lastAct);
     lastAct = actState;
-    if cnt>0    %¼ì²âµ½Ò»´ÎÓÉ¶¯µ½¾²Ö®ºóÎåÃëÄÚ²»ÔÙ¼ì²â£¬·ÀÖ¹ÎóÇĞ
+    if cnt>0    %æ£€æµ‹åˆ°ä¸€æ¬¡ç”±åŠ¨åˆ°é™ä¹‹åäº”ç§’å†…ä¸å†æ£€æµ‹ï¼Œé˜²æ­¢è¯¯åˆ‡
         status = [3,0,0];
     elseif actState == 1    %walking
         status = [1,0,0];
@@ -92,7 +92,7 @@ for t = 1: totTime * 60
     elseif stateTrans == 0    %static, just stop walking
         cnt = 5;
         sId = find(time == actTime(1));
-        sId = sId + 40;    %ÎªÁËÇĞ¸î¸ü×¼ÒıÈëµÄĞŞÕı£¬¿Éµ÷
+        sId = sId + 40;    %ä¸ºäº†åˆ‡å‰²æ›´å‡†å¼•å…¥çš„ä¿®æ­£ï¼Œå¯è°ƒ
         eId = find(time == actTime(2));
         segmentAmp1 = downsampleAmp1(sId: eId);
         segmentAmp2 = downsampleAmp2(sId: eId);
@@ -101,7 +101,7 @@ for t = 1: totTime * 60
         
         [dis, dir] = calDisDir(segmentQ, waveLength);
         
-        threshold1 = 0.4e-3;    %ÓÃÓÚÇø·ÖÔ¶½üÁ½´¦ÏàÍ¬¾àÀë£¨r1->r2ºÍr3->r4£©
+        threshold1 = 0.4e-3;    %ç”¨äºåŒºåˆ†è¿œè¿‘ä¸¤å¤„ç›¸åŒè·ç¦»ï¼ˆr1->r2å’Œr3->r4ï¼‰
         [ra, rb] = roomMatch(roomNum, disGraph, dis, dir, variance, threshold1);
         if ra == -1
             status = [0,0,0];
@@ -112,9 +112,9 @@ for t = 1: totTime * 60
         disp(['dis: ', num2str(dis)]);
         disp(['dir: ', num2str(dir)]);
         disp(['ra: ', num2str(ra), ',rb: ', num2str(rb)]);
-        paraTime = time(end/30*17+1:end/30*29);    %Ö»ÔÚÇ°¶ËÕ¹Ê¾30s´°¿ÚÖĞ17s-29sµÄ²¨ĞÎ
+        paraTime = time(end/30*17+1:end/30*29);    %åªåœ¨å‰ç«¯å±•ç¤º30sçª—å£ä¸­17s-29sçš„æ³¢å½¢
         paraAmpQ = downsampleAmpQ(end/30*17+1:end/30*29);
-        actSID = find(paraTime == actTime(1));    %ÒÔÏÂÓÃÓÚÉú³ÉÇ°¶ËÖĞ×ß¶¯²¨ĞÎ²¿·Ö¸ßÁÁ£¬¶Ëµã×öÁËĞŞÕı£¬¿Éµ÷
+        actSID = find(paraTime == actTime(1));    %ä»¥ä¸‹ç”¨äºç”Ÿæˆå‰ç«¯ä¸­èµ°åŠ¨æ³¢å½¢éƒ¨åˆ†é«˜äº®ï¼Œç«¯ç‚¹åšäº†ä¿®æ­£ï¼Œå¯è°ƒ
         if isempty(actSID)
             actSID = 0;
         else
