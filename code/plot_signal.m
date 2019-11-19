@@ -1,0 +1,11 @@
+path = 'C:\Desktop\data\';
+fileName = 'test_';
+signal = read_file(path, fileName, 2);
+figure;
+plot(real(signal));
+figure;
+plot(imag(signal));
+figure;
+plot(abs(signal));
+figure;
+plot(abs(signal(:,1)./signal(:,2)));
