@@ -1,6 +1,6 @@
 系统结构如下图所示
 
-![system_plot](https://github.com/czxlesh/LoRa-Sensing/blob/master/breath%20monitoring%20system/System architecture.PNG)
+![system_plot](https://github.com/czxlesh/LoRa-Sensing/blob/master/breath%20monitoring%20system/System_architecture.PNG)
 
 代码分三部分：GnuRadio、Matlab和Web
 
