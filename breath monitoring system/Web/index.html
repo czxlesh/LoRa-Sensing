@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="css/circle.css" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+    body {
+        /*padding-top: 20px;*/
+        background-color: #E4E5E6;
+    }
+
+    .row {
+        /*height: 96vh;*/
+    }
+
+    .card {
+        /*padding: 0vh 0vh;
+        height: 46vh;*/
+   
+    }
+
+    .chart {
+        width: 110%;
+        height: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    #myvideo {
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="container"> -->
+    <div class="row" style="height:3vh">    
+        <div class="col" style="width:58vw">
+            <div class="row" style="height:45.6vh">
+                <div class="card" style="height:45.6vh">
+                    <div class="chart" id="chart1" align="middle"></div>
+                </div>
+            </div>
+            <div class="row" style="height:45.6vh">
+                <div class="col" style="padding-left:0vh; width:38vw">
+                    <div class="card" style="height:45vh">
+                        <h5></h5>
+                        <div class="chart" id="chart2" align="middle"></div>
+                    </div>
+                </div>
+                <div class="col" style="padding-left:0vh; width:18.2vw">
+                    <div class="card" style="height:45vh; width:18.2vw">
+                        <span><h5 style="text-align: center; font-weight: bold;padding-top: 1.8vh; font-size: 22px;">Breath Rate / BPM</h5></span>
+                        <h1 style="width: 100%; text-align: center; padding-top: 5%; font-size: 20vh;" id='breathRate'>20</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col" style="text-align: center; width: 40vw">
+            <div class="card hoverable" style="height:96vh; width: 40vw">
+                <video id="myvideo" autoplay align="middle""></video>
+            </div>
+        </div>
+    </div>
+
+    <!--div class="row">
+        <div class="col s8">
+        	<div class="card hoverable">
+            	<div class="chart" id="chart1"></div>
+            </div>
+        </div>	
+        <div class="col s4" style="text-align: center"> 
+            <div class="card hoverable">
+            	<video id="myvideo" autoplay align="middle"></video>
+        	</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s8">
+        	<div class="card hoverable">
+            	<div class="chart" id="chart2"></div>
+            </div>
+        </div>	
+        <div class="col s4">
+        	<div class="card hoverable">
+        		<span><h4 style="text-align: center; font-weight: bold">Breath Rate/Bpm</h4></span>
+				<h1 style="width: 100%; text-align: center; padding-top: 0%; font-size: 20vh;" id='breathRate'>--</h1>
+			</div>
+        </div>      
+    </div -->
+    <!-- </div> -->
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    
+    <script type="text/javascript">
+    let tmp=[];
+	for(let i = 0;i < 20;i++){
+    	tmp.push(i+1);
+	}
+    let amp_opt = {
+        title: {
+            text: 'Time Domain, Distance: 20m',
+            left: 'center',
+            y: '6vh',
+            textStyle: {
+                fontSize: 22,
+            }
+        },
+        grid: {
+        	x:70,
+        	x2:100,
+        	y:50
+        },
+        xAxis: {
+            data: tmp,
+            axisLabel: {
+                textStyle: {
+                    fontSize: 16,
+                }
+            },
+            name: 'Time / Second',
+            nameTextStyle: {
+                fontSize: 18,
+                fontWeight: 'bold',
+            },
+            nameLocation: 'middle',
+            nameGap: 34,
+            splitLine: {
+                show: true,
+            },
+        },
+        yAxis: {
+            type: 'value',
+            name: 'Amplitude / db',
+            axisLabel: {
+                textStyle: {
+                    fontSize: 16,
+                }
+            },
+            nameTextStyle: {
+                fontSize: 18,
+                fontWeight: 'bold',
+            },
+            nameLocation: 'middle',
+            nameGap: 45,
+        },
+        series: [{
+            name: '模拟数据',
+            type: 'line',
+            data: tmp,
+            symbol: 'none',
+            smooth: true,
+        }],
+        visualMap:{
+        	show: false,
+        	dimension: 0,
+        	pieces:[{gte: 0, lte: 0, color: 'red'}],
+        	outOfRange: {
+        		color: 'blue'
+        	}
+        }
+    };
+
+
+	let freq_opt = {
+        title: {
+            text: 'Frequency Domain',
+            left: 'center',
+            y: '8vh',
+            textStyle: {
+                fontSize: 22,
+            }
+        },
+        grid: {
+        	x:70,
+        	x2:100,
+        	y:50
+        },
+        xAxis: {
+            data: tmp,
+            axisLabel: {
+                textStyle: {
+                    fontSize: 16,
+                }
+            },
+            name: 'Frequency / Hz',
+            nameTextStyle: {
+                fontSize: 18,
+                fontWeight: 'bold',
+            },
+            nameLocation: 'middle',
+            nameGap: 34,
+            splitLine: {
+                show: true,
+            },
+        },
+        yAxis: {
+            type: 'value',
+            name: 'Power',
+            axisLabel: {
+                textStyle: {
+                    fontSize: 16,
+                }
+            },
+            nameTextStyle: {
+                fontSize: 18,
+                fontWeight: 'bold',
+            },
+            nameLocation: 'middle',
+            nameGap: 45,
+        },
+        series: [{
+            name: '模拟数据',
+            type: 'line',
+            data: tmp,
+            symbol: 'none',
+            smooth: true,
+        }],
+        visualMap:{
+        	show: false,
+        	dimension: 0,
+        	pieces:[{gte: 0, lte: 0, color: 'red'}],
+        	outOfRange: {
+        		color: 'red'
+        	}
+        }
+    };
+
+    let amp_chart = echarts.init(document.getElementById('chart1'));
+    let freq_chart = echarts.init(document.getElementById('chart2'));
+
+
+    amp_chart.setOption(amp_opt);
+    freq_chart.setOption(freq_opt);
+
+    
+
+    // 异步加载数据
+
+    setInterval(function() {
+        let url = 'querydata.php';
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'text',
+            success: function(data) {
+                //console.log('success');
+                //console.log(data);
+                let obj = JSON.parse(data);
+
+                let brate = obj.brate;
+   
+                amp_chart.setOption({
+                    title: {
+                        text: 'Time Domain',
+                        left: 'center',
+                        y: '8vh',
+                        textStyle: {
+                           fontSize: 22,
+                        }
+                    },
+                    xAxis: {
+                        data: obj.time,
+                    },
+                    series: {
+                        type: 'line',
+                        smooth: true,
+                        data: obj.amp,
+                    },
+                    yAxis: {
+                        min: Math.min.apply(Math, obj.amp) - 0.0002,
+                        max: Math.max.apply(Math, obj.amp) + 0.0002,
+                        //splitNumber:5,
+                        axisLabel: {                   
+                 			formatter: function (value, index) {           
+                  			return value.toFixed(2);      
+                   			}                
+            			}
+                    },
+                    
+                    visualMap:{
+                    	//pieces: line_pieces
+                    }
+                    
+                 });
+
+                freq_chart.setOption({
+                    title: {
+                        text: 'Frequency Domain',
+                        left: 'center',
+                        y: '8vh',
+                        textStyle: {
+                           fontSize: 22,
+                        }
+                    },
+                    xAxis: {
+                        data: obj.freq,
+                    },
+                    series: {
+                    	symbol: 'emptyCircle',
+                    	itemStyle: {
+                    		normal: {
+                        		areaStyle: {
+                            		type: 'default',
+                            		opacity: 0.2
+                        		}
+                    		}
+                    	},
+                        type: 'line',
+                        smooth: 0,
+                        data: obj.psd
+                    },
+                    yAxis: {
+                        min: Math.min.apply(Math, obj.psd),
+                        max: Math.max.apply(Math, obj.psd),
+                        splitNumber:2
+                    
+                    },
+                    
+                    visualMap:{
+                    	//pieces: line_pieces
+                    }
+                    
+                 });
+				
+				//textall = textall + letter;
+				//$("#letterinput").innerHTML(letter);
+
+				document.getElementById("breathRate").innerHTML=brate;
+
+                
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(textStatus);
+            }
+        });
+
+    }, 500);
+    // alert("fuck!");
+    </script>
+    <!-- <script type="text/javascript" src="js/mydraw.js"></script> -->
+    <script type="text/javascript" src="js/myvideo.js"></script>
+    <script type="text/javascript" src="js/motor.js"></script>
+</body>
+
+</html>
